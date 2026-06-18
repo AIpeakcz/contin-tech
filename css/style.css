@@ -1,0 +1,460 @@
+/* ============================================================
+   CONTIN TECH — stylesheet
+   Paleta: uhlově černá → grafit → ocel → stříbro
+   Display: Space Grotesk | Tělo: Inter
+   ============================================================ */
+
+:root {
+  /* Paleta */
+  --ink:        #0a0b0d;   /* nejhlubší pozadí */
+  --carbon:     #121418;   /* sekce */
+  --graphite:   #1c1f26;   /* karty */
+  --steel:      #2a2e38;   /* okraje, linky */
+  --ash:        #6b7280;   /* sekundární text */
+  --silver:     #c7ccd6;   /* hlavní text na tmavém */
+  --chrome:     #f4f6fa;   /* nejsvětlejší, nadpisy */
+  --accent:     #8a93a6;   /* studené stříbrné zvýraznění */
+  --accent-hot: #e8edf5;   /* highlight, hover */
+
+  /* Typografie */
+  --display: 'Space Grotesk', sans-serif;
+  --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Rytmus */
+  --maxw: 1280px;
+  --gap: clamp(1.5rem, 4vw, 4rem);
+  --radius: 4px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  background: var(--ink);
+  color: var(--silver);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 500;
+  color: var(--chrome);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gap);
+}
+
+.eyebrow {
+  font-family: var(--display);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-block;
+  margin-bottom: 1.2rem;
+}
+
+/* ============================================================
+   HLAVIČKA
+   ============================================================ */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10, 11, 13, 0.72);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--steel);
+  transition: background 0.3s;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gap);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.45rem;
+  letter-spacing: 0.04em;
+  color: var(--chrome);
+}
+.brand .div {
+  width: 1px; height: 26px;
+  background: var(--steel);
+}
+.brand .sub {
+  font-weight: 400;
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  font-size: 0.94rem;
+}
+.menu a {
+  color: var(--silver);
+  transition: color 0.2s;
+  position: relative;
+}
+.menu a:hover { color: var(--chrome); }
+.menu a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 0; height: 1px;
+  background: var(--accent-hot);
+  transition: width 0.25s;
+}
+.menu a:hover::after { width: 100%; }
+
+.nav-cta {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border: 1px solid var(--steel);
+  border-radius: var(--radius);
+  color: var(--chrome);
+  transition: all 0.25s;
+}
+.nav-cta:hover {
+  border-color: var(--accent-hot);
+  background: var(--graphite);
+}
+
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+.burger span { width: 24px; height: 2px; background: var(--silver); transition: 0.3s; }
+
+/* ============================================================
+   HERO + 3D plátno
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+#net-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.hero::after {
+  /* jemný vinětační přechod, aby text byl čitelný */
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(ellipse 70% 70% at 22% 50%, rgba(10,11,13,0.94) 0%, rgba(10,11,13,0.62) 42%, rgba(10,11,13,0.15) 72%, transparent 100%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gap);
+  width: 100%;
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  max-width: 16ch;
+  margin-bottom: 1.8rem;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent);
+}
+.hero p {
+  max-width: 52ch;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  color: var(--silver);
+  margin-bottom: 2.6rem;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 0.98rem;
+  padding: 15px 30px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.25s;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-primary {
+  background: var(--chrome);
+  color: var(--ink);
+}
+.btn-primary:hover { background: var(--accent-hot); transform: translateY(-2px); }
+.btn-ghost {
+  background: transparent;
+  border-color: var(--steel);
+  color: var(--chrome);
+}
+.btn-ghost:hover { border-color: var(--accent-hot); background: var(--graphite); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 34px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.scroll-hint .line { width: 1px; height: 40px; background: linear-gradient(var(--accent), transparent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+/* ============================================================
+   SEKCE obecně
+   ============================================================ */
+section { position: relative; }
+.section-pad { padding: clamp(5rem, 11vw, 9rem) 0; }
+.carbon { background: var(--carbon); }
+
+.section-head { max-width: 60ch; margin-bottom: 4rem; }
+.section-head h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 1.2rem; }
+.section-head p { color: var(--ash); font-size: 1.1rem; }
+
+/* Pilíře / karty služeb */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+}
+.card {
+  background: var(--graphite);
+  border: 1px solid var(--steel);
+  border-radius: var(--radius);
+  padding: 2.4rem 2rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.card:hover { transform: translateY(-6px); border-color: var(--accent); }
+.card:hover::before { transform: scaleX(1); }
+.card .num {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.6rem;
+}
+.card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+.card p { color: var(--ash); font-size: 0.98rem; }
+
+/* Postup / proces */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  counter-reset: step;
+}
+.step {
+  padding: 1.8rem 0;
+  border-top: 1px solid var(--steel);
+}
+.step .n {
+  font-family: var(--display);
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--steel);
+  margin-bottom: 0.8rem;
+}
+.step h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.step p { color: var(--ash); font-size: 0.9rem; }
+
+/* Výhody (proč my) */
+.benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.benefit { padding-left: 1.4rem; border-left: 2px solid var(--accent); }
+.benefit h4 { font-size: 1.2rem; margin-bottom: 0.6rem; }
+.benefit p { color: var(--ash); font-size: 0.95rem; }
+
+/* CTA pruh */
+.cta-band {
+  text-align: center;
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  background: linear-gradient(180deg, var(--carbon), var(--ink));
+  border-top: 1px solid var(--steel);
+}
+.cta-band h2 { font-size: clamp(2rem, 5vw, 3.6rem); margin-bottom: 1.4rem; max-width: 20ch; margin-inline: auto; }
+.cta-band p { color: var(--ash); max-width: 50ch; margin: 0 auto 2.4rem; font-size: 1.1rem; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--ink);
+  border-top: 1px solid var(--steel);
+  padding: 4rem 0 2.5rem;
+}
+.foot-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; }
+.foot-brand { font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: var(--chrome); letter-spacing: 0.04em; }
+.foot-brand p { font-family: var(--body); font-weight: 400; font-size: 0.9rem; color: var(--ash); margin-top: 0.8rem; max-width: 32ch; }
+.foot-col h5 { font-family: var(--display); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.foot-col a { display: block; color: var(--silver); font-size: 0.92rem; padding: 4px 0; transition: color 0.2s; }
+.foot-col a:hover { color: var(--chrome); }
+.foot-bottom { border-top: 1px solid var(--steel); padding-top: 1.5rem; font-size: 0.84rem; color: var(--ash); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+
+/* ============================================================
+   HELP DESK — plovoucí tlačítko + modal
+   ============================================================ */
+.help-fab {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  z-index: 200;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 14px 22px;
+  background: var(--chrome);
+  color: var(--ink);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  transition: all 0.25s;
+}
+.help-fab:hover { transform: translateY(-3px) scale(1.03); background: var(--accent-hot); }
+.help-fab .dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74,222,128,0.6);
+  animation: ping 2s infinite;
+}
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(74,222,128,0.5);} 70%{box-shadow:0 0 0 10px rgba(74,222,128,0);} 100%{box-shadow:0 0 0 0 rgba(74,222,128,0);} }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(5,6,8,0.75);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--carbon);
+  border: 1px solid var(--steel);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 540px;
+  padding: 2.6rem;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal h3 { font-size: 1.8rem; margin-bottom: 0.6rem; }
+.modal .lead { color: var(--ash); margin-bottom: 2rem; font-size: 0.98rem; }
+.modal-close {
+  position: absolute; top: 18px; right: 18px;
+  background: none; border: none; color: var(--ash);
+  font-size: 1.6rem; cursor: pointer; line-height: 1;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: var(--chrome); }
+
+.field { margin-bottom: 1.3rem; }
+.field label {
+  display: block;
+  font-family: var(--display);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  color: var(--silver);
+  margin-bottom: 0.5rem;
+}
+.field input, .field textarea, .field select {
+  width: 100%;
+  background: var(--ink);
+  border: 1px solid var(--steel);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  color: var(--chrome);
+  font-family: var(--body);
+  font-size: 0.96rem;
+  transition: border-color 0.2s;
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  outline: none;
+  border-color: var(--accent-hot);
+}
+.field textarea { resize: vertical; min-height: 110px; }
+.modal .btn-primary { width: 100%; justify-content: center; }
+.form-note { font-size: 0.8rem; color: var(--ash); margin-top: 1rem; text-align: center; }
+.form-success { text-align: center; padding: 1rem 0; }
+.form-success .check { font-size: 3rem; color: #4ade80; margin-bottom: 1rem; }
+
+/* ============================================================
+   REVEAL animace při scrollu
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s, transform 0.7s; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ============================================================
+   RESPONZIVITA
+   ============================================================ */
+@media (max-width: 900px) {
+  .menu, .nav-cta { display: none; }
+  .burger { display: flex; }
+  .grid-3, .steps, .benefits { grid-template-columns: 1fr; }
+  .steps .step { border-top: 1px solid var(--steel); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
