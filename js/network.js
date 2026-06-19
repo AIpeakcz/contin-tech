@@ -31,9 +31,20 @@
   camera.position.z = 100;
 
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
   const DPR = Math.min(window.devicePixelRatio, 2);
   renderer.setPixelRatio(DPR);
+
+  // Velikost bereme z canvasu (hero pruh), ne z celého okna — hero už není
+  // přes celou výšku, takže síť se musí vejít přesně do něj a nesmí se ořezávat.
+  // setSize(..., false) nechá rozměry řídit CSS (inset:0; 100%).
+  function resizeRenderer() {
+    const w = canvas.clientWidth || window.innerWidth;
+    const h = canvas.clientHeight || window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h, false);
+  }
+  resizeRenderer();
 
   /* --- Vlastní materiál pro kulaté měkké glow body ---
      gl_PointCoord ořízne čtvercový sprite do kruhu se měkkým spádem,
@@ -243,9 +254,7 @@
 
   // --- Resize ---
   window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    resizeRenderer();
     if (reduceMotion) renderStatic();
   });
 })();

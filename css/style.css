@@ -161,9 +161,10 @@ header {
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 76vh;
   display: flex;
   align-items: center;
+  padding: 90px 0 3.5rem;   /* odsazení pod fixní hlavičkou + vzduch dole */
   overflow: hidden;
 }
 #net-canvas {
@@ -179,7 +180,7 @@ header {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: radial-gradient(ellipse 70% 70% at 22% 50%, rgba(10,11,13,0.94) 0%, rgba(10,11,13,0.62) 42%, rgba(10,11,13,0.15) 72%, transparent 100%);
+  background: radial-gradient(ellipse 60% 95% at 20% 50%, rgba(10,11,13,0.94) 0%, rgba(10,11,13,0.7) 40%, rgba(10,11,13,0.2) 72%, transparent 100%);
   pointer-events: none;
 }
 .hero-content {
@@ -191,9 +192,9 @@ header {
   width: 100%;
 }
 .hero h1 {
-  font-size: clamp(2.6rem, 6vw, 5.2rem);
-  max-width: 16ch;
-  margin-bottom: 1.8rem;
+  font-size: clamp(2.2rem, 4.6vw, 4rem);
+  max-width: 15ch;
+  margin-bottom: 1.6rem;
 }
 .hero h1 em {
   font-style: italic;
@@ -201,10 +202,10 @@ header {
   color: var(--accent);
 }
 .hero p {
-  max-width: 52ch;
-  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  max-width: 44ch;
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
   color: var(--silver);
-  margin-bottom: 2.6rem;
+  margin-bottom: 2.2rem;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
@@ -235,7 +236,7 @@ header {
 
 .scroll-hint {
   position: absolute;
-  bottom: 34px; left: 50%;
+  bottom: 22px; left: 50%;
   transform: translateX(-50%);
   z-index: 3;
   font-size: 0.74rem;
