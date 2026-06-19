@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poradna — CONTIN Tech</title>
+  <meta name="description" content="Poradna CONTIN Tech: články, diskuze a dotazy zdarma k AI ve firmě, nákladům, automatizaci, návratnosti i právu. Nezávislý expertní pohled.">
+
+  <!-- Fonty -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================== HLAVIČKA ===================== -->
+  <header>
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        CONTIN<span class="div"></span><span class="sub">Tech</span>
+      </a>
+      <div class="menu" id="menu">
+        <a href="index.html#sluzby">Služby</a>
+        <a href="index.html#proces">Jak to funguje</a>
+        <a href="index.html#proc-my">Proč my</a>
+        <a href="index.html#metodika">Metodika</a>
+        <a href="poradna.html" class="active">Poradna</a>
+      </div>
+      <a href="#" class="nav-cta" data-open-help>Bezplatná konzultace</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <!-- ===================== HERO PRUH ===================== -->
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow reveal">Poradna CONTIN Tech</span>
+      <h1 class="reveal">Nezávislé odpovědi na otázky kolem AI ve firmě</h1>
+      <p class="reveal">Články, praktická vysvětlení a diskuze. Jednoduchý dotaz zodpovíme zdarma — bez prodeje technologií, bez provizí od dodavatelů. Jen expertní pohled.</p>
+    </div>
+  </section>
+
+  <!-- ===================== FILTRY + MŘÍŽKA ===================== -->
+  <section class="section-pad">
+    <div class="wrap">
+
+      <!-- Filtry témat (přepínatelné štítky) -->
+      <div class="filters reveal" id="filters">
+        <button class="chip active" data-filter="all">Vše</button>
+        <button class="chip" data-filter="ai">AI ve firmě</button>
+        <button class="chip" data-filter="naklady">Náklady a tokeny</button>
+        <button class="chip" data-filter="automatizace">Automatizace</button>
+        <button class="chip" data-filter="navratnost">Návratnost</button>
+        <button class="chip" data-filter="pravo">Právo a smlouvy</button>
+      </div>
+
+      <p class="empty-note" id="empty-note">K tomuto tématu zatím nemáme žádný článek. Zkuste jiné téma, nebo nám napište dotaz.</p>
+
+      <!-- Mřížka článků (ukázková data napevno) -->
+      <div class="article-grid" id="article-grid">
+
+        <a class="article-card reveal" href="clanek.html" data-topic="naklady">
+          <div class="thumb"><span class="thumb-num">01</span></div>
+          <div class="body">
+            <div class="meta"><span class="tag">Náklady a tokeny</span><span class="date">12. 6. 2026</span></div>
+            <h3>Kolik vás reálně stojí firemní AI? Rozpad nákladů na tokeny, API a lidi</h3>
+            <p>Měsíční faktura za AI bývá jen špička ledovce. Ukazujeme, kde se schovávají skutečné náklady a jak je poprvé zviditelnit.</p>
+            <span class="read">Číst dál →</span>
+          </div>
+        </a>
+
+        <a class="article-card reveal" href="clanek.html" data-topic="navratnost">
+          <div class="thumb"><span class="thumb-num">02</span></div>
+          <div class="body">
+            <div class="meta"><span class="tag">Návratnost</span><span class="date">9. 6. 2026</span></div>
+            <h3>„Ušetřili jsme čas." Jak poznat, jestli se AI opravdu vyplatila</h3>
+            <p>Dojem úspory není návratnost. Vysvětlujeme princip baseline → měření → výsledek a metriky, které před vedením obstojí.</p>
+            <span class="read">Číst dál →</span>
+          </div>
+        </a>
+
+        <a class="article-card reveal" href="clanek.html" data-topic="ai">
+          <div class="thumb"><span class="thumb-num">03</span></div>
+          <div class="body">
+            <div class="meta"><span class="tag">AI ve firmě</span><span class="date">5. 6. 2026</span></div>
+            <h3>Kde má AI ve firmě smysl — a kde je to jen drahá hračka</h3>
+            <p>Než utratíte korunu. Tři otázky, podle kterých poznáte, jestli daný proces na nasazení AI vůbec zraje.</p>
+            <span class="read">Číst dál →</span>
+          </div>
+        </a>
+
+        <a class="article-card reveal" href="clanek.html" data-topic="automatizace">
+          <div class="thumb"><span class="thumb-num">04</span></div>
+          <div class="body">
+            <div class="meta"><span class="tag">Automatizace</span><span class="date">30. 5. 2026</span></div>
+            <h3>Automatizace vs. AI: kdy stačí skript a kdy potřebujete model</h3>
+            <p>Ne každý problém potřebuje jazykový model. Kde je levnější a spolehlivější klasická automatizace a jak je rozlišit.</p>
+            <span class="read">Číst dál →</span>
+          </div>
+        </a>
+
+        <a class="article-card reveal" href="clanek.html" data-topic="pravo">
+          <div class="thumb"><span class="thumb-num">05</span></div>
+          <div class="body">
+            <div class="meta"><span class="tag">Právo a smlouvy</span><span class="date">23. 5. 2026</span></div>
+            <h3>Co si pohlídat ve smlouvě s dodavatelem AI řešení</h3>
+            <p>Vlastnictví dat, odpovědnost za výstupy, exit ze služby. Body, na kterých se nejčastěji firmy spálí.</p>
+            <span class="read">Číst dál →</span>
+          </div>
+        </a>
+
+        <a class="article-card reveal" href="clanek.html" data-topic="ai">
+          <div class="thumb"><span class="thumb-num">06</span></div>
+          <div class="body">
+            <div class="meta"><span class="tag">AI ve firmě</span><span class="date">16. 5. 2026</span></div>
+            <h3>Pilot, který nikam nevedl: proč většina AI experimentů uvázne</h3>
+            <p>Nadšený pilot a pak ticho. Nejčastější důvody, proč se AI projekt nedostane do provozu, a jak se jim vyhnout.</p>
+            <span class="read">Číst dál →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA PRUH ===================== -->
+  <section class="cta-band">
+    <div class="wrap reveal">
+      <h2>Nenašli jste odpověď na svůj případ?</h2>
+      <p>Napište nám konkrétní dotaz. Jednoduché zodpovíme zdarma, u většího rozsahu navrhneme schůzku a komplexní šetření.</p>
+      <button class="btn btn-primary" data-open-help>Položit dotaz zdarma</button>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">CONTIN Tech<p>Technologická divize CONTIN s.r.o. Nezávislý expertní audit investic do AI, automatizace a robotizace.</p></div>
+        </div>
+        <div class="foot-col">
+          <h5>Služby</h5>
+          <a href="index.html#sluzby">Audit záměru</a>
+          <a href="index.html#sluzby">Audit návratnosti</a>
+          <a href="index.html#sluzby">Expertní posudek</a>
+        </div>
+        <div class="foot-col">
+          <h5>Kontakt</h5>
+          <a href="mailto:tech@contin.cz">tech@contin.cz</a>
+          <a href="tel:+420539011854">539 011 854</a>
+          <a href="#">Škrobárenská 502/1, Brno</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 CONTIN s.r.o. — Tech divize</span>
+        <span>Převádíme chaos na čísla</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== HELP DESK FAB + MODAL ===================== -->
+  <button class="help-fab" data-open-help aria-label="Bezplatná konzultace">
+    <span class="dot"></span> Poradíme zdarma
+  </button>
+
+  <div class="modal-overlay" id="help-modal" role="dialog" aria-modal="true" aria-labelledby="help-title">
+    <div class="modal">
+      <button class="modal-close" id="help-close" aria-label="Zavřít">&times;</button>
+      <div id="form-body">
+        <h3 id="help-title">Popište nám svůj případ</h3>
+        <p class="lead">Napište nám, co řešíte. Posoudíme to a zdarma se vám ozveme zpět s prvním nezávislým pohledem.</p>
+        <form id="help-form">
+          <div class="field">
+            <label for="hf-name">Jméno a firma</label>
+            <input type="text" id="hf-name" name="name" required placeholder="Jan Novák, Firma s.r.o.">
+          </div>
+          <div class="field">
+            <label for="hf-email">E-mail</label>
+            <input type="email" id="hf-email" name="email" required placeholder="jan.novak@firma.cz">
+          </div>
+          <div class="field">
+            <label for="hf-topic">Čeho se to týká</label>
+            <select id="hf-topic" name="topic">
+              <option>Zvažuji investici do AI</option>
+              <option>AI už používám, neznám návratnost</option>
+              <option>Potřebuji nezávislý posudek</option>
+              <option>Něco jiného</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hf-msg">Váš dotaz nebo popis problému</label>
+            <textarea id="hf-msg" name="message" required placeholder="Stručně popište situaci..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Odeslat dotaz</button>
+          <p class="form-note">Nezávazné a zdarma. Ozveme se obvykle do dvou pracovních dnů.</p>
+        </form>
+      </div>
+      <div class="form-success" id="form-success" style="display:none;">
+        <div class="check">&#10003;</div>
+        <h3>Děkujeme, máme to</h3>
+        <p class="lead">Ozveme se vám zpět na uvedený e-mail.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SKRIPTY ===================== -->
+  <script src="js/app.js"></script>
+  <script src="js/poradna.js"></script>
+</body>
+</html>

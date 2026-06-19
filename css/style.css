@@ -458,3 +458,264 @@ footer {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ============================================================
+   PORADNA — přehled, filtry, mřížka článků, detail, diskuze
+   (využívá proměnné a komponenty výše, nic neduplikuje)
+   ============================================================ */
+
+/* Aktivní položka v navigaci */
+.menu a.active { color: var(--chrome); }
+.menu a.active::after { width: 100%; }
+
+/* --- Hero pruh stránky (menší než hlavní hero, bez 3D) --- */
+.page-hero {
+  position: relative;
+  padding: calc(76px + clamp(4rem, 9vw, 7rem)) 0 clamp(3rem, 7vw, 5rem);
+  background:
+    radial-gradient(ellipse 80% 120% at 50% -10%, rgba(138,147,166,0.10), transparent 60%),
+    linear-gradient(180deg, var(--carbon), var(--ink));
+  border-bottom: 1px solid var(--steel);
+  overflow: hidden;
+}
+/* jemná technická mřížka v pozadí */
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--steel) 1px, transparent 1px),
+    linear-gradient(90deg, var(--steel) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.06;
+  mask-image: radial-gradient(ellipse 70% 80% at 50% 30%, #000 30%, transparent 80%);
+  pointer-events: none;
+}
+.page-hero .wrap { position: relative; z-index: 1; }
+.page-hero h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); max-width: 18ch; margin-bottom: 1.2rem; }
+.page-hero p { color: var(--ash); font-size: 1.12rem; max-width: 56ch; }
+
+/* --- Filtry témat --- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 3rem;
+}
+.chip {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+  padding: 9px 18px;
+  background: var(--graphite);
+  border: 1px solid var(--steel);
+  border-radius: 50px;
+  color: var(--silver);
+  cursor: pointer;
+  transition: all 0.22s;
+}
+.chip:hover { border-color: var(--accent); color: var(--chrome); }
+.chip.active {
+  background: var(--chrome);
+  border-color: var(--chrome);
+  color: var(--ink);
+}
+
+/* --- Mřížka článků --- */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+}
+.article-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--graphite);
+  border: 1px solid var(--steel);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+  color: inherit;
+}
+.article-card:hover { transform: translateY(-6px); border-color: var(--accent); }
+.article-card.is-hidden { display: none; }
+
+/* Náhledový obrázek = placeholder (tečková síť v paletě webu) */
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background:
+    radial-gradient(circle, var(--accent) 1px, transparent 1.4px) 0 0 / 18px 18px,
+    linear-gradient(135deg, var(--steel), var(--graphite) 70%);
+  overflow: hidden;
+}
+.thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10,11,13,0.7));
+}
+.thumb .thumb-num {
+  position: absolute;
+  left: 18px; bottom: 12px;
+  z-index: 1;
+  font-family: var(--display);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--chrome);
+  opacity: 0.85;
+  letter-spacing: 0.05em;
+}
+.article-card .body { padding: 1.6rem 1.5rem 1.8rem; display: flex; flex-direction: column; flex: 1; }
+.article-card .meta {
+  display: flex; align-items: center; gap: 0.8rem;
+  margin-bottom: 0.9rem; flex-wrap: wrap;
+}
+.tag {
+  font-family: var(--display);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--steel);
+  border-radius: 50px;
+  padding: 3px 11px;
+}
+.date { font-size: 0.82rem; color: var(--ash); }
+.article-card h3 { font-size: 1.24rem; margin-bottom: 0.7rem; line-height: 1.25; }
+.article-card p { color: var(--ash); font-size: 0.94rem; margin-bottom: 1.2rem; flex: 1; }
+.read {
+  font-family: var(--display);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--chrome);
+  transition: gap 0.2s;
+}
+.article-card:hover .read { color: var(--accent-hot); }
+
+.empty-note { color: var(--ash); padding: 2rem 0; display: none; }
+.empty-note.show { display: block; }
+
+/* --- Detail článku --- */
+.article { max-width: 760px; margin: 0 auto; }
+.article-head { margin-bottom: 2.4rem; }
+.article-head .meta { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; margin: 1.2rem 0 0; }
+.article-head h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); margin-top: 1.2rem; }
+.byline { font-size: 0.88rem; color: var(--ash); }
+.byline strong { color: var(--silver); font-weight: 500; }
+
+.article-body { font-size: 1.06rem; }
+.article-body p { margin-bottom: 1.4rem; color: var(--silver); }
+.article-body h2 { font-size: 1.6rem; margin: 2.4rem 0 1rem; }
+.article-body h3 { font-size: 1.25rem; margin: 1.8rem 0 0.8rem; }
+.article-body ul { margin: 0 0 1.4rem 1.2rem; color: var(--silver); }
+.article-body li { margin-bottom: 0.5rem; }
+.article-body blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.4rem;
+  margin: 1.8rem 0;
+  color: var(--chrome);
+  font-size: 1.18rem;
+  font-style: italic;
+}
+
+/* Video embed (placeholder, responzivní 16:9) */
+.video-embed {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  margin: 2rem 0;
+  background: var(--graphite);
+  border: 1px solid var(--steel);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-embed .video-ph {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.7rem;
+  color: var(--ash); text-align: center; padding: 1rem;
+  pointer-events: none;
+}
+.video-embed .play {
+  width: 58px; height: 58px; border-radius: 50%;
+  border: 1px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--chrome); font-size: 1.1rem;
+}
+
+/* --- Diskuze --- */
+.discussion { max-width: 760px; margin: 3.5rem auto 0; }
+.discussion > h2 { font-size: 1.8rem; margin-bottom: 0.4rem; }
+.discussion .sub { color: var(--ash); margin-bottom: 2.2rem; }
+.comment {
+  display: flex; gap: 1rem;
+  padding: 1.4rem 0;
+  border-top: 1px solid var(--steel);
+}
+.comment-av {
+  flex: none;
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--graphite); border: 1px solid var(--steel);
+  font-family: var(--display); font-weight: 500; color: var(--accent);
+}
+.comment-main { flex: 1; }
+.comment-head { display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.35rem; flex-wrap: wrap; }
+.comment-head .name { font-family: var(--display); font-weight: 500; color: var(--chrome); }
+.comment-head .badge {
+  font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--steel); border-radius: 50px; padding: 2px 8px;
+}
+.comment-main p { color: var(--silver); font-size: 0.97rem; }
+.comment-main .date { display: block; margin-top: 0.1rem; }
+
+/* Formulář nového příspěvku */
+.reply-form {
+  margin-top: 2.6rem;
+  padding: 2rem;
+  background: var(--carbon);
+  border: 1px solid var(--steel);
+  border-radius: 8px;
+}
+.reply-form h3 { font-size: 1.3rem; margin-bottom: 1.4rem; }
+.choices { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.3rem; }
+.choice {
+  display: flex; align-items: flex-start; gap: 0.7rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--steel);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.choice:hover { border-color: var(--accent); }
+.choice input { margin-top: 0.25rem; accent-color: var(--accent-hot); flex: none; }
+.choice .c-label { font-family: var(--display); font-size: 0.92rem; color: var(--chrome); }
+.choice .c-desc { font-size: 0.84rem; color: var(--ash); }
+.reply-form .btn-primary { width: 100%; justify-content: center; margin-top: 0.4rem; }
+#phone-field { display: none; }
+#phone-field.show { display: block; }
+
+/* --- CTA blok uvnitř článku --- */
+.cta-inline {
+  max-width: 760px;
+  margin: 3.5rem auto 0;
+  padding: 2.4rem;
+  background: linear-gradient(135deg, var(--graphite), var(--carbon));
+  border: 1px solid var(--steel);
+  border-radius: 8px;
+  text-align: center;
+}
+.cta-inline h3 { font-size: 1.5rem; margin-bottom: 0.8rem; }
+.cta-inline p { color: var(--ash); max-width: 48ch; margin: 0 auto 1.6rem; }
+
+/* --- Responzivita poradny --- */
+@media (max-width: 900px) {
+  .article-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .article-grid { grid-template-columns: 1fr; }
+  .reply-form, .cta-inline { padding: 1.6rem; }
+}
