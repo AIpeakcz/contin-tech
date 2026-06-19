@@ -161,10 +161,10 @@ header {
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 76vh;
+  min-height: 72vh;
   display: flex;
   align-items: center;
-  padding: 90px 0 3.5rem;   /* odsazení pod fixní hlavičkou + vzduch dole */
+  padding: 90px 0 0;        /* spodní přechod řeší gradient (.hero::before) */
   overflow: hidden;
 }
 #net-canvas {
@@ -181,6 +181,16 @@ header {
   inset: 0;
   z-index: 2;
   background: radial-gradient(ellipse 60% 95% at 20% 50%, rgba(10,11,13,0.94) 0%, rgba(10,11,13,0.7) 40%, rgba(10,11,13,0.2) 72%, transparent 100%);
+  pointer-events: none;
+}
+.hero::before {
+  /* plynulý přechod spodní hrany hero do navazující sekce (.carbon) */
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 40%;
+  z-index: 2;
+  background: linear-gradient(to bottom, transparent 0%, rgba(18,20,24,0.5) 55%, var(--carbon) 100%);
   pointer-events: none;
 }
 .hero-content {
@@ -254,6 +264,8 @@ header {
 section { position: relative; }
 .section-pad { padding: clamp(5rem, 11vw, 9rem) 0; }
 .carbon { background: var(--carbon); }
+/* první sekce navazuje na hero těsněji (přechod je už v hero gradientu) */
+.hero + .section-pad { padding-top: clamp(2.5rem, 5vw, 4.5rem); }
 
 .section-head { max-width: 60ch; margin-bottom: 4rem; }
 .section-head h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 1.2rem; }
