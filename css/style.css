@@ -110,6 +110,11 @@ header {
   text-transform: uppercase;
   color: var(--accent);
 }
+.brand-logo {
+  height: 26px;
+  width: auto;
+  display: block;
+}
 
 .menu {
   display: flex;
@@ -339,6 +344,9 @@ footer {
 .foot-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; }
 .foot-brand { font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: var(--chrome); letter-spacing: 0.04em; }
 .foot-brand p { font-family: var(--body); font-weight: 400; font-size: 0.9rem; color: var(--ash); margin-top: 0.8rem; max-width: 32ch; }
+.foot-brand-row { display: inline-flex; align-items: center; gap: 12px; }
+.foot-logo { height: 26px; width: auto; display: block; }
+.foot-brand .sub { font-family: var(--display); font-weight: 400; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
 .foot-col h5 { font-family: var(--display); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
 .foot-col a { display: block; color: var(--silver); font-size: 0.92rem; padding: 4px 0; transition: color 0.2s; }
 .foot-col a:hover { color: var(--chrome); }
